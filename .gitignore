@@ -322,3 +322,9 @@ ASALocalRun/
 
 # NVidia Nsight GPU debugger configuration file
 *.nvuser
+
+# SFML doc files
+SFML-2.4.2/doc/
+SFML-2.4.2/*.txt
+SFML-2.4.2/examples/
+SFML-2.4.2/cmake/
