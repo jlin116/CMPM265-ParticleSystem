@@ -8,12 +8,13 @@ class Particle : public RectangleShape
 {
 private:
     Vector2f m_position;
-    Vector2f m_velocity;
     Vector2f m_acceleration;
 
+public:
+    Vector2f m_velocity;
+    float m_defaultLifespan;
     float m_lifespan;
 
-public:
     Particle() {};
     Particle(Vector2f pos, float startAngle, Color c);
 

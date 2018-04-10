@@ -15,9 +15,10 @@ ParticleSystem::ParticleSystem(Vector2f pos, unsigned int count)
     fillParticleSystem();
 
     // Generate random particle emission angle and color
-    m_startAngle = rand() % 360;
+    m_startAngle = (float)(rand() % 360);
     m_emissionColor = Color(rand() % 255, rand() % 255, rand() % 255, 255);
     m_spawnControl = DEFAULT_SPAWN_COUNT;
+    m_strategy = IStrategy();
 }
 
 void ParticleSystem::update(float elapsedTime)
@@ -27,6 +28,9 @@ void ParticleSystem::update(float elapsedTime)
 
     for (vector<Particle*>::iterator it = m_particles.begin(); it != m_particles.end();)
     {
+        // Apply strategy to particles
+        m_strategy.change(**it, elapsedTime);
+        // Update particle system state
         (*it)->update(elapsedTime);
 
         // Check the particle lifespan, return false means to be removed
@@ -53,6 +57,11 @@ void ParticleSystem::draw(RenderWindow& window)
     }
 }
 
+void ParticleSystem::setStrategy(IStrategy strategy)
+{
+    m_strategy = strategy;
+}
+
 void ParticleSystem::changeParticleCount(unsigned int count)
 {
     m_particleCount = count;
@@ -64,7 +73,7 @@ void ParticleSystem::fillParticleSystem()
         return;
 
     // Every frame will generate small amount instead of generating
-    int spawnCount = (m_particleCount - m_particles.size() > m_spawnControl) ? m_spawnControl : (m_particleCount - m_particles.size());
+    int spawnCount = (m_particleCount - (int)m_particles.size() > m_spawnControl) ? m_spawnControl : (m_particleCount - m_particles.size());
     for (size_t i = 0; i < spawnCount; ++i)
     {
         m_particles.push_back(new Particle(m_emitLocation, m_startAngle, m_emissionColor));

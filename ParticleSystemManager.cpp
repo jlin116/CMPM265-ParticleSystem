@@ -9,7 +9,7 @@ ParticleSystemManager::ParticleSystemManager()
 
     font.loadFromFile("arial.ttf");
     uiText = Text("Particle Amount: ", font);
-    uiText.setCharacterSize(32);
+    uiText.setCharacterSize(16);
     uiText.setFillColor(Color::White);
 }
 

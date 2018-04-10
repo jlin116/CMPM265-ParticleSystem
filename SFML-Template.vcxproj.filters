@@ -30,6 +30,9 @@
     <ClCompile Include="Strategy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="IStrategy_IncreaseSize.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Particle.h">
@@ -44,7 +47,10 @@
     <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Strategy.h">
+    <ClInclude Include="IStrategy_IncreaseSize.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IStrategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
