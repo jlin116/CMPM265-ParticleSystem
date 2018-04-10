@@ -4,20 +4,18 @@
 
 using namespace sf;
 
-class Particle : RectangleShape
+class Particle : public RectangleShape
 {
 private:
-    Vector2f position;
-    Vector2f velocity;
-    Vector2f acceleration;
+    Vector2f m_position;
+    Vector2f m_velocity;
+    Vector2f m_acceleration;
 
-    float lifespan;
+    float m_lifespan;
 
 public:
-    Particle();
+    Particle() {};
     Particle(Vector2f pos);
 
     void update(float elapsedTime);
-
-    Drawable* display();
 };

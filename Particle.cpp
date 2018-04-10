@@ -1,20 +1,38 @@
 #include "Particle.h"
 
+#define LIFE_SPAN_MIN_MS 1000
+#define LIFE_SPAN_MAX_MS 3000
+
+#define PARTICLE_SIZE 2
+
 Particle::Particle(Vector2f pos)
 {
-    position = pos;
-    velocity = Vector2f(0, 0);
-    acceleration = Vector2f(0, 0);
+    // Initialize particle metadata
+    m_position = pos;
 
-    lifespan = 255;
+    // Random emitting angle and speed
+    float angle = (std::rand() % 360) * 3.14f / 180.f;
+    float speed = (std::rand() % 50) + 50.f;
+    m_velocity = Vector2f(std::cos(angle) * speed, std::sin(angle) * speed);
+
+    // Simulate downward gravity
+    m_acceleration = Vector2f(0, 0.05f);
+
+    // Random lifespan between min and max in milliseconds
+    m_lifespan = std::rand() % (LIFE_SPAN_MAX_MS - LIFE_SPAN_MIN_MS + 1) + LIFE_SPAN_MIN_MS;
+
+    // Initialize SFML drawable
+    setSize(Vector2f(PARTICLE_SIZE, PARTICLE_SIZE));
+    setOrigin(Vector2f(PARTICLE_SIZE / 2, PARTICLE_SIZE / 2));
+    setFillColor(Color::Red);
+    setPosition(m_position);
 }
 
 void Particle::update(float elapsedTime)
 {
+    m_velocity += m_acceleration;
+    m_position += m_velocity * elapsedTime;
+    m_lifespan -= elapsedTime;
 
-}
-
-Drawable* Particle::display()
-{
-
+    setPosition(m_position);
 }

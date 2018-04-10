@@ -1,10 +1,15 @@
-#include <SFML/Graphics.hpp>
+
+#include "main.h"
+
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGH 600
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1920, 1024), "ParticleSystem");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGH), "ParticleSystem");
+    sf::Clock clock;
+
+    particle = Particle(Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGH / 2));
 
     while (window.isOpen())
     {
@@ -15,10 +20,27 @@ int main()
                 window.close();
         }
 
-        window.clear();
-        window.draw(shape);
-        window.display();
+        float elapsedTime = clock.restart().asSeconds();
+
+        update(elapsedTime);
+
+        draw(window);
     }
 
     return 0;
 }
+
+void update(float elapsedTime)
+{
+    particle.update(elapsedTime);
+}
+
+void draw(RenderWindow& window)
+{
+    window.clear();
+
+    window.draw(particle);
+
+    window.display();
+}
+
