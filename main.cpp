@@ -12,7 +12,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGH), "ParticleSystem");
     sf::Clock clock;
 
-    srand(time(NULL));
+    srand((unsigned int)time(NULL));
     m_particleSystemMode = ParticleSystemManager::ParticleSystemMode::DEFAULT;
 
     while (window.isOpen())
@@ -29,7 +29,7 @@ int main()
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
                     std::cout << "Mouse Clicked" << endl;
-                    m_particleSystemManager.spawnParticleSystem(Vector2f(event.mouseButton.x, event.mouseButton.y), m_particleSystemMode);
+                    m_particleSystemManager.spawnParticleSystem(Vector2f((float)event.mouseButton.x, (float)event.mouseButton.y), m_particleSystemMode);
                 }
             }
 

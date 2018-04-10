@@ -1,7 +1,9 @@
 #include "ParticleSystem.h"
 #include <iostream>
 
-#define MAX_SPAWN_COUNT 10
+#define MAX_SPAWN_COUNT 500
+#define DEFAULT_SPAWN_COUNT 5
+#define SPAWN_COUNT_INCREMENT 30
 
 ParticleSystem::ParticleSystem(Vector2f pos, unsigned int count)
 {
@@ -11,6 +13,11 @@ ParticleSystem::ParticleSystem(Vector2f pos, unsigned int count)
 
     // fill the particle array with particles
     fillParticleSystem();
+
+    // Generate random particle emission angle and color
+    m_startAngle = rand() % 360;
+    m_emissionColor = Color(rand() % 255, rand() % 255, rand() % 255, 255);
+    m_spawnControl = DEFAULT_SPAWN_COUNT;
 }
 
 void ParticleSystem::update(float elapsedTime)
@@ -57,10 +64,15 @@ void ParticleSystem::fillParticleSystem()
         return;
 
     // Every frame will generate small amount instead of generating
-    int spawnCount = (m_particleCount - m_particles.size() > MAX_SPAWN_COUNT) ? MAX_SPAWN_COUNT : (m_particleCount - m_particles.size());
+    int spawnCount = (m_particleCount - m_particles.size() > m_spawnControl) ? m_spawnControl : (m_particleCount - m_particles.size());
     for (size_t i = 0; i < spawnCount; ++i)
     {
-        m_particles.push_back(new Particle(m_emitLocation));
+        m_particles.push_back(new Particle(m_emitLocation, m_startAngle, m_emissionColor));
     }
+
+    // Slowly ramping up the spawn amount
+    m_spawnControl += SPAWN_COUNT_INCREMENT;
+    if (m_spawnControl > MAX_SPAWN_COUNT)
+        m_spawnControl = MAX_SPAWN_COUNT;
 }
 

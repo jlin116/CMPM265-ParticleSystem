@@ -15,7 +15,7 @@ private:
 
 public:
     Particle() {};
-    Particle(Vector2f pos);
+    Particle(Vector2f pos, float startAngle, Color c);
 
     void update(float elapsedTime);
     bool checkLifespan();

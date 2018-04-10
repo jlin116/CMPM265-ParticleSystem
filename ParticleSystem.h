@@ -21,5 +21,9 @@ private:
     vector<Particle*> m_particles;
     Vector2f m_emitLocation;
 
+    float m_startAngle;
+    Color m_emissionColor;
+    unsigned int m_spawnControl;
+
     void fillParticleSystem();
 };

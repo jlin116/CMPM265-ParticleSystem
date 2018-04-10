@@ -6,13 +6,11 @@
 
 #define PARTICLE_SIZE 2
 
-Particle::Particle(Vector2f pos)
+Particle::Particle(Vector2f pos, float startAngle, Color c)
 {
-    // Initialize particle metadata
     m_position = pos;
 
-    // Random emitting angle and speed
-    float angle = (std::rand() % 360) * 3.14f / 180.f;
+    float angle = ((std::rand() % 50) + startAngle) * 3.14f / 180.f;
     float speed = (std::rand() % 50) + 50.f;
     m_velocity = Vector2f(std::cos(angle) * speed, std::sin(angle) * speed);
 
@@ -25,7 +23,7 @@ Particle::Particle(Vector2f pos)
     // Initialize SFML drawable
     setSize(Vector2f(PARTICLE_SIZE, PARTICLE_SIZE));
     setOrigin(Vector2f(PARTICLE_SIZE / 2, PARTICLE_SIZE / 2));
-    setFillColor(Color::Red);
+    setFillColor(c);
     setPosition(m_position);
 }
 

@@ -6,6 +6,11 @@ ParticleSystemManager::ParticleSystemManager()
 {
     m_particleSystems = vector<ParticleSystem>();
     m_particleAmount = DEFAULT_PARTICLE_AMOUNT;
+
+    font.loadFromFile("arial.ttf");
+    uiText = Text("Particle Amount: ", font);
+    uiText.setCharacterSize(32);
+    uiText.setFillColor(Color::White);
 }
 
 void ParticleSystemManager::spawnParticleSystem(Vector2f pos, ParticleSystemManager::ParticleSystemMode mode)
@@ -48,6 +53,8 @@ void ParticleSystemManager::update(float elapsedTime)
     {
         (*it).update(elapsedTime);
     }
+
+    uiText.setString("Current Amount: " + to_string(m_particleAmount));
 }
 
 void ParticleSystemManager::draw(RenderWindow& window)
@@ -56,4 +63,6 @@ void ParticleSystemManager::draw(RenderWindow& window)
     {
         (*it).draw(window);
     }
+
+    window.draw(uiText);
 }

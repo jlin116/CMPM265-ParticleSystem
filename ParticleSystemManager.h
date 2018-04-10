@@ -6,6 +6,8 @@ class ParticleSystemManager
 private:
     vector<ParticleSystem> m_particleSystems;
     unsigned int m_particleAmount;
+    Text uiText;
+    Font font;
 
     void updateParticleAmount();
 
