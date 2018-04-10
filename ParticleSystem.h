@@ -14,6 +14,7 @@ public:
 
     void update(float elapsedTime);
     void draw(RenderWindow& window);
+    void changeParticleCount(unsigned int count);
 
 private:
     int m_particleCount;

@@ -46,8 +46,16 @@ void ParticleSystem::draw(RenderWindow& window)
     }
 }
 
+void ParticleSystem::changeParticleCount(unsigned int count)
+{
+    m_particleCount = count;
+}
+
 void ParticleSystem::fillParticleSystem()
 {
+    if (m_particles.size() >= m_particleCount)
+        return;
+
     // Every frame will generate small amount instead of generating
     int spawnCount = (m_particleCount - m_particles.size() > MAX_SPAWN_COUNT) ? MAX_SPAWN_COUNT : (m_particleCount - m_particles.size());
     for (size_t i = 0; i < spawnCount; ++i)

@@ -1,8 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "ParticleSystem.h"
+#include "ParticleSystemManager.h"
 
-ParticleSystem particleSystem;
-
-void update(float elapsedTime);
-void draw(RenderWindow& window);
+ParticleSystemManager m_particleSystemManager;
+ParticleSystemManager::ParticleSystemMode m_particleSystemMode;

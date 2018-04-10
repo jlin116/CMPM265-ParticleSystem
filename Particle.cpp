@@ -17,7 +17,7 @@ Particle::Particle(Vector2f pos)
     m_velocity = Vector2f(std::cos(angle) * speed, std::sin(angle) * speed);
 
     // Simulate downward gravity
-    m_acceleration = Vector2f(0, 0.05f);
+    m_acceleration = Vector2f(0, 0.5f);
 
     // Random lifespan between min and max in milliseconds
     m_lifespan = (float)(std::rand() % (LIFE_SPAN_MAX_MS - LIFE_SPAN_MIN_MS + 1) + LIFE_SPAN_MIN_MS);
