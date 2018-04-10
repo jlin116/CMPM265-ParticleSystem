@@ -1,30 +1,24 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include <vector>
+#include "Particle.h"
 
 using namespace sf;
 using namespace std;
 
-class ParticleSystem : public Drawable, public sf::Transformable
+class ParticleSystem
 {
 public:
-    ParticleSystem(unsigned int count);
+    ParticleSystem() {};
+    ParticleSystem(Vector2f pos, unsigned int count);
 
-    void setEmitter(Vector2f position);
-
-    void update(Time elapsed);
+    void update(float elapsedTime);
+    void draw(RenderWindow& window);
 
 private:
-    struct Particle
-    {
-        Vector2f velocity;
-        Time lifetime;
-    };
+    int m_particleCount;
+    vector<Particle*> m_particles;
+    Vector2f m_emitLocation;
 
-    void resetParticle(std::size_t index);
-
-    vector<Particle> m_particles;
-    VertexArray m_vertices;
-    Time m_lifetime;
-    Vector2f m_emitter;
+    void fillParticleSystem();
 };

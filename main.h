@@ -1,8 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Particle.h"
+#include "ParticleSystem.h"
 
-Particle particle;
+ParticleSystem particleSystem;
 
 void update(float elapsedTime);
 void draw(RenderWindow& window);

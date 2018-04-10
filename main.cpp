@@ -1,15 +1,16 @@
-
 #include "main.h"
+#include <stdlib.h>
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGH 600
-
+#define DEFAULT_PARTICLE_AMOUNT 2000
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGH), "ParticleSystem");
     sf::Clock clock;
 
-    particle = Particle(Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGH / 2));
+    particleSystem = ParticleSystem(Vector2f(WINDOW_WIDTH/2, WINDOW_HEIGH/2), DEFAULT_PARTICLE_AMOUNT);
+    srand(time(NULL));
 
     while (window.isOpen())
     {
@@ -32,14 +33,14 @@ int main()
 
 void update(float elapsedTime)
 {
-    particle.update(elapsedTime);
+    particleSystem.update(elapsedTime);
 }
 
 void draw(RenderWindow& window)
 {
     window.clear();
 
-    window.draw(particle);
+    particleSystem.draw(window);
 
     window.display();
 }

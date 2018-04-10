@@ -18,4 +18,5 @@ public:
     Particle(Vector2f pos);
 
     void update(float elapsedTime);
+    bool checkLifespan();
 };
