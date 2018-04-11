@@ -5,7 +5,7 @@
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGH 600
 
-#define PARTICLE_AMOUNT_CHANGE_AMOUNT 1000
+#define PARTICLE_AMOUNT_CHANGE_AMOUNT 50
 
 int main()
 {
@@ -13,7 +13,7 @@ int main()
     sf::Clock clock;
 
     srand((unsigned int)time(NULL));
-    m_particleSystemMode = ParticleSystemManager::ParticleSystemMode::DEFAULT;
+    m_particleSystemMode = ParticleSystemManager::ParticleSystemMode::INCREASE_SIZE;
 
     while (window.isOpen())
     {

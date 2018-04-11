@@ -19,7 +19,7 @@ Particle::Particle(Vector2f pos, float startAngle, Color c)
 
     // Random lifespan between min and max in milliseconds
     m_lifespan = (float)(std::rand() % (LIFE_SPAN_MAX_MS - LIFE_SPAN_MIN_MS + 1) + LIFE_SPAN_MIN_MS);
-    m_defaultLifespan = m_lifespan;
+    m_duration = m_lifespan;
 
     // Initialize SFML drawable
     setSize(Vector2f(PARTICLE_SIZE, PARTICLE_SIZE));

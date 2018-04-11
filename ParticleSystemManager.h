@@ -4,7 +4,7 @@
 class ParticleSystemManager
 {
 private:
-    vector<ParticleSystem> m_particleSystems;
+    vector<ParticleSystem*> m_particleSystems;
     unsigned int m_particleAmount;
     Text uiText;
     Font font;
@@ -14,12 +14,14 @@ private:
 public:
     enum ParticleSystemMode
     {
-        DEFAULT,
-        MODE_1,
-        MODE_2
+        INCREASE_SIZE,
+        SHRINK_SIZE,
+        INCREASE_VELOCITY,
+        DECREASE_VELOCITY
     };
 
     ParticleSystemManager();
+    ~ParticleSystemManager();
 
     void spawnParticleSystem(Vector2f pos, ParticleSystemMode mode);
     void increaseParticleAmount(unsigned int amount);

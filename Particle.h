@@ -12,7 +12,7 @@ private:
 
 public:
     Vector2f m_velocity;
-    float m_defaultLifespan;
+    float m_duration;
     float m_lifespan;
 
     Particle() {};
