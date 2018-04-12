@@ -30,6 +30,15 @@
     <ClCompile Include="IBehaviour_IncreaseSize.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="IBehaviour_DecreaseSize.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IBehaviour_DecreaseVelocity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IBehaviour_IncreaseVelocity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Particle.h">
@@ -48,6 +57,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IBehaviour_IncreaseSize.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IBehaviour_DecreaseSize.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IBehaviour_IncreaseVelocity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IBehaviour_DecreaseVelocity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

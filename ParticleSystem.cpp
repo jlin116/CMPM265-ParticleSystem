@@ -1,7 +1,7 @@
 #include "ParticleSystem.h"
 #include <iostream>
 
-#define MAX_SPAWN_COUNT 100
+#define MAX_SPAWN_COUNT 30
 #define DEFAULT_SPAWN_COUNT 5
 #define SPAWN_COUNT_INCREMENT 5
 
@@ -13,13 +13,13 @@ ParticleSystem::ParticleSystem(Vector2f pos, unsigned int count)
     m_spawnControl = DEFAULT_SPAWN_COUNT;
 
     // fill the particle array with particles
-    fillParticleSystem();
+    // fillParticleSystem();
 
     // Generate random particle emission angle and color
     m_startAngle = (float)(rand() % 360);
     m_emissionColor = Color(rand() % 255, rand() % 255, rand() % 255, 255);
 
-    m_behaviour = new IBehaviour();
+    m_behaviour = vector<IBehaviour*>();
 }
 
 ParticleSystem::~ParticleSystem()
@@ -29,7 +29,12 @@ ParticleSystem::~ParticleSystem()
         delete *it;
         it = m_particles.erase(it);
     }
-    delete m_behaviour;
+
+    for (vector<IBehaviour*>::iterator it = m_behaviour.begin(); it != m_behaviour.end();)
+    {
+        delete *it;
+        it = m_behaviour.erase(it);
+    }
 }
 
 void ParticleSystem::update(float elapsedTime)
@@ -37,7 +42,10 @@ void ParticleSystem::update(float elapsedTime)
     for (vector<Particle*>::iterator it = m_particles.begin(); it != m_particles.end();)
     {
         // Apply behaviour to 
-        m_behaviour->lerp(**it);
+        for (vector<IBehaviour*>::iterator b = m_behaviour.begin(); b != m_behaviour.end(); ++b)
+        {
+            (*b)->lerp(**it);
+        }
 
         // Update particle system state
         (*it)->update(elapsedTime);
@@ -74,10 +82,9 @@ void ParticleSystem::changeParticleCount(unsigned int count)
     m_particleCount = count;
 }
 
-void ParticleSystem::setBehaviour(IBehaviour *behaviour)
+void ParticleSystem::addBehaviour(IBehaviour *behaviour)
 {
-    delete m_behaviour;
-    m_behaviour = behaviour;
+    m_behaviour.push_back(behaviour);
 }
 
 void ParticleSystem::fillParticleSystem()

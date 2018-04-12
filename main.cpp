@@ -28,7 +28,6 @@ int main()
             {
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
-                    std::cout << "Mouse Clicked" << endl;
                     m_particleSystemManager.spawnParticleSystem(Vector2f((float)event.mouseButton.x, (float)event.mouseButton.y), m_particleSystemMode);
                 }
             }
@@ -39,21 +38,35 @@ int main()
                 // Increase particle amount
                 if (event.key.code == sf::Keyboard::Up)
                 {
-                    std::cout << "Increase Amount" << endl;
                     m_particleSystemManager.increaseParticleAmount(PARTICLE_AMOUNT_CHANGE_AMOUNT);
                 }
 
                 // Decrease particle amount
                 if (event.key.code == sf::Keyboard::Down)
                 {
-                    std::cout << "Decrease Amount" << endl;
                     m_particleSystemManager.decreaseParticleAmount(PARTICLE_AMOUNT_CHANGE_AMOUNT);
                 }
 
-                // 3 Types of particle systems
-                if (event.key.code == sf::Keyboard::Num1 || event.key.code == sf::Keyboard::Num2 || event.key.code == sf::Keyboard::Num3)
+                // 4 Types of particle systems
+                if (event.key.code == sf::Keyboard::Num1)
                 {
-
+                    std::cout << "ParticleSystem Increasing Size" << endl;
+                    m_particleSystemMode = ParticleSystemManager::ParticleSystemMode::INCREASE_SIZE;
+                }
+                if (event.key.code == sf::Keyboard::Num2)
+                {
+                    std::cout << "ParticleSystem Decreasing Size" << endl;
+                    m_particleSystemMode = ParticleSystemManager::ParticleSystemMode::SHRINK_SIZE;
+                }
+                if (event.key.code == sf::Keyboard::Num3)
+                {
+                    std::cout << "ParticleSystem Increasing Velocity" << endl;
+                    m_particleSystemMode = ParticleSystemManager::ParticleSystemMode::INCREASE_VELOCITY;
+                }
+                if (event.key.code == sf::Keyboard::Num4)
+                {
+                    std::cout << "ParticleSystem Decreasing Velocity" << endl;
+                    m_particleSystemMode = ParticleSystemManager::ParticleSystemMode::DECREASE_VELOCITY;
                 }
             }
         }

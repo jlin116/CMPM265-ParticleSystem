@@ -1,8 +1,11 @@
 #include "ParticleSystemManager.h"
 
 #include "IBehaviour_IncreaseSize.h"
+#include "IBehaviour_DecreaseSize.h"
+#include "IBehaviour_IncreaseVelocity.h"
+#include "IBehaviour_DecreaseVelocity.h"
 
-#define DEFAULT_PARTICLE_AMOUNT 50
+#define DEFAULT_PARTICLE_AMOUNT 300
 
 ParticleSystemManager::ParticleSystemManager()
 {
@@ -31,29 +34,32 @@ void ParticleSystemManager::spawnParticleSystem(Vector2f pos, ParticleSystemMana
 
     switch (mode)
     {
-    case ParticleSystemMode::INCREASE_SIZE:
-    {
-        IBehaviour* newBehaviour = new IBehaviour_IncreaseSize(Vector2f(5, 5));
-        newParticleSystem->setBehaviour(newBehaviour);
-        break;
-    }
-    case ParticleSystemMode::SHRINK_SIZE:
-    {
-
-        break;
-    }
-    case ParticleSystemMode::INCREASE_VELOCITY:
-    {
-
-        break;
-    }
-    case ParticleSystemMode::DECREASE_VELOCITY:
-    {
-
-        break;
-    }
-    default:
-        break;
+        case ParticleSystemMode::INCREASE_SIZE:
+        {
+            IBehaviour* newBehaviour = new IBehaviour_IncreaseSize(Vector2f(10, 10));
+            newParticleSystem->addBehaviour(newBehaviour);
+            break;
+        }
+        case ParticleSystemMode::SHRINK_SIZE:
+        {
+            IBehaviour* newBehaviour = new IBehaviour_DecreaseSize();
+            newParticleSystem->addBehaviour(newBehaviour);
+            break;
+        }
+        case ParticleSystemMode::INCREASE_VELOCITY:
+        {
+            IBehaviour* newBehaviour = new IBehaviour_IncreaseVelocity();
+            newParticleSystem->addBehaviour(newBehaviour);
+            break;
+        }
+        case ParticleSystemMode::DECREASE_VELOCITY:
+        {
+            IBehaviour* newBehaviour = new IBehaviour_DecreaseVelocity();
+            newParticleSystem->addBehaviour(newBehaviour);
+            break;
+        }
+        default:
+            break;
     }
 }
 

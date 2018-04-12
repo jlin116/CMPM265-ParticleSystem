@@ -17,7 +17,7 @@ public:
     void update(float elapsedTime);
     void draw(RenderWindow& window);
     void changeParticleCount(unsigned int count);
-    void setBehaviour(IBehaviour *behaviour);
+    void addBehaviour(IBehaviour *behaviour);
 
 protected:
     virtual void lerp() { };
@@ -31,7 +31,7 @@ private:
     Color m_emissionColor;
     unsigned int m_spawnControl;
 
-    IBehaviour* m_behaviour;
+    vector<IBehaviour*> m_behaviour;
 
     void fillParticleSystem();
 };

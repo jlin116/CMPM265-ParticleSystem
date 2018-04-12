@@ -4,7 +4,7 @@
 #define LIFE_SPAN_MIN_MS 500
 #define LIFE_SPAN_MAX_MS 3000
 
-#define PARTICLE_SIZE 2
+#define PARTICLE_SIZE 5
 
 Particle::Particle(Vector2f pos, float startAngle, Color c)
 {
@@ -13,6 +13,7 @@ Particle::Particle(Vector2f pos, float startAngle, Color c)
     float angle = ((std::rand() % 50) + startAngle) * 3.14f / 180.f;
     float speed = (std::rand() % 50) + 50.f;
     m_velocity = Vector2f(std::cos(angle) * speed, std::sin(angle) * speed);
+    m_initSpeed = m_velocity;
 
     // Simulate downward gravity
     m_acceleration = Vector2f(0, 0.5f);

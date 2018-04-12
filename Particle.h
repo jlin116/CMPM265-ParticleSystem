@@ -11,6 +11,7 @@ private:
     Vector2f m_acceleration;
 
 public:
+    Vector2f m_initSpeed;
     Vector2f m_velocity;
     float m_duration;
     float m_lifespan;

@@ -133,7 +133,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="IBehaviour_DecreaseSize.cpp" />
+    <ClCompile Include="IBehaviour_DecreaseVelocity.cpp" />
     <ClCompile Include="IBehaviour_IncreaseSize.cpp" />
+    <ClCompile Include="IBehaviour_IncreaseVelocity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
@@ -141,7 +144,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IBehaviour.h" />
+    <ClInclude Include="IBehaviour_DecreaseSize.h" />
+    <ClInclude Include="IBehaviour_DecreaseVelocity.h" />
     <ClInclude Include="IBehaviour_IncreaseSize.h" />
+    <ClInclude Include="IBehaviour_IncreaseVelocity.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleSystem.h" />
